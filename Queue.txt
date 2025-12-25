@@ -1,0 +1,61 @@
+class Queue {
+
+    int[] queue;
+    int front, rear, size;
+
+    // Constructor
+    Queue(int size) {
+        this.size = size;
+        queue = new int[size];
+        front = 0;
+        rear = -1;
+    }
+
+    // Enqueue (Add element)
+    void enqueue(int value) {
+        if (rear == size - 1) {
+            System.out.println("Queue Overflow");
+            return;
+        }
+        queue[++rear] = value;
+    }
+
+    // Dequeue (Remove element)
+    int dequeue() {
+        if (front > rear) {
+            System.out.println("Queue Underflow");
+            return -1;
+        }
+        return queue[front++];
+    }
+
+    // Peek (Front element)
+    int peek() {
+        if (front > rear) return -1;
+        return queue[front];
+    }
+
+    // Display queue
+    void display() {
+        for (int i = front; i <= rear; i++) {
+            System.out.print(queue[i] + " ");
+        }
+        System.out.println();
+    }
+
+    // Main method
+    public static void main(String[] args) {
+        Queue q = new Queue(5);
+
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(30);
+
+        q.display();
+
+        System.out.println("Removed: " + q.dequeue());
+        System.out.println("Front Element: " + q.peek());
+
+        q.display();
+    }
+}
